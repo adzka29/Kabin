@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tabungan Kabin</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9"/>
+  <link rel="icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="description" content="Aplikasi tabungan pribadi: catat pemasukan, pengeluaran, dan target.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/app-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+</head>
+<body>
+  <header class="app-bar">
+    <h1>Tabungan Kabin</h1>
+    <button id="installBtn" class="ghost-btn" aria-label="Install Aplikasi" title="Install">Install</button>
+  </header>
+
+  <main class="container">
+    <section class="summary-card">
+      <div class="summary-item">
+        <span>Total Saldo</span>
+        <strong id="saldo">Rp 0</strong>
+      </div>
+      <div class="summary-split">
+        <div><span>Pemasukan</span><strong id="income">Rp 0</strong></div>
+        <div><span>Pengeluaran</span><strong id="expense">Rp 0</strong></div>
+      </div>
+      <div class="target-row">
+        <label for="targetInput">🎯 Target tabungan:</label>
+        <input type="number" id="targetInput" placeholder="cth: 5000000">
+        <button id="saveTarget" class="btn">Simpan Target</button>
+      </div>
+      <div id="targetInfo" class="target-info" aria-live="polite"></div>
+    </section>
+
+    <section class="form-card">
+      <h2>Tambah Transaksi</h2>
+      <form id="txForm">
+        <div class="grid-2">
+          <label>
+            Jenis
+            <select id="type">
+              <option value="income">Pemasukan</option>
+              <option value="expense">Pengeluaran</option>
+            </select>
+          </label>
+          <label>
+            Tanggal
+            <input type="date" id="date">
+          </label>
+        </div>
+        <div class="grid-2">
+          <label>
+            Jumlah (Rp)
+            <input type="number" id="amount" min="0" step="1000" placeholder="cth: 100000">
+          </label>
+          <label>
+            Kategori
+            <input type="text" id="category" placeholder="cth: gaji, makan, transport">
+          </label>
+        </div>
+        <label>
+          Catatan (opsional)
+          <input type="text" id="note" placeholder="cth: THR, kopi, bensin">
+        </label>
+        <button class="btn" type="submit">Simpan</button>
+      </form>
+    </section>
+
+    <section class="filter-card">
+      <h2>Riwayat</h2>
+      <div class="grid-3">
+        <label>
+          Bulan
+          <input type="month" id="monthFilter">
+        </label>
+        <label>
+          Cari
+          <input type="search" id="search" placeholder="kategori / catatan">
+        </label>
+        <div class="actions">
+          <button id="exportCsv" class="ghost-btn">Export CSV</button>
+          <button id="clearAll" class="ghost-btn danger">Hapus Semua</button>
+        </div>
+      </div>
+      <ul id="txList" class="tx-list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025 Tabungan Pribadi • Offline Ready</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
